@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dapatan Kajian Taskforce Perjawatan Primer KKM</title>
+    <meta name="description" content="Dashboard perbandingan tugasan sebenar yang dilakukan di lapangan dengan Penghuraian Kerja Perkhidmatan rasmi. Format jadual APA.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header" id="appHeader">
+            <div class="header-content">
+                <div class="header-left">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Coat_of_arms_of_Malaysia.svg/500px-Coat_of_arms_of_Malaysia.svg.png" alt="Jata Negara" class="logo-mark" style="background:transparent; padding:0; height:60px; width:auto; border-radius:0;">
+                    <div>
+                        <h1>Dapatan Kajian Taskforce Perjawatan Primer KKM</h1>
+                        <p class="subtitle">Analisis Tematik: Beban Tugas Sebenar Lapangan vs Penghuraian Kerja Perkhidmatan (JD)</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="controls-row">
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Cari tugasan...">
+                        </div>
+                        <select id="jawatanFilter" class="filter-select">
+                            <option value="all">Semua Jawatan</option>
+                        </select>
+                        <button id="printBtn" class="action-btn" title="Cetak ke PDF"><i class="fas fa-print"></i></button>
+                        <button id="themeToggle" class="action-btn" title="Tukar Tema"><i class="fas fa-moon"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- KPI Cards -->
+        <section class="kpi-section">
+            <div class="kpi-grid">
+                <div class="kpi-card kpi-total">
+                    <div class="kpi-icon">📋</div>
+                    <div class="kpi-value" id="kpiTotalGroups">0</div>
+                    <div class="kpi-label">Kumpulan Jawatan</div>
+                </div>
+                <div class="kpi-card kpi-tasks">
+                    <div class="kpi-icon">📊</div>
+                    <div class="kpi-value" id="kpiTotalTasks">0</div>
+                    <div class="kpi-label">Tugasan Sebenar</div>
+                </div>
+                <div class="kpi-card kpi-aligned">
+                    <div class="kpi-icon">✅</div>
+                    <div class="kpi-value" id="kpiAligned">0</div>
+                    <div class="kpi-label">Selari dengan JD</div>
+                </div>
+                <div class="kpi-card kpi-creep">
+                    <div class="kpi-icon">🔴</div>
+                    <div class="kpi-value" id="kpiCreep">0</div>
+                    <div class="kpi-label">Tiada dalam JD</div>
+                </div>
+                <div class="kpi-card kpi-dormant">
+                    <div class="kpi-icon">🟡</div>
+                    <div class="kpi-value" id="kpiDormant">0</div>
+                    <div class="kpi-label">Ada dalam JD Tidak Dibuat</div>
+                </div>
+            </div>
+        </section>
+
+            <!-- Extra stat if needed in future -->
+        <section class="chart-section">
+            <div class="section-header">
+                <h2>Ringkasan Pemetaan Per Jawatan</h2>
+                <p>Bilangan tugasan sebenar yang Selari, Tiada dalam JD tetapi dijalankan, atau Tiada Padanan</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="overviewChart"></canvas>
+            </div>
+        </section>
+
+        <!-- APA Overview Table -->
+        <section class="apa-section">
+            <div class="section-header">
+                <h2>Jadual Ringkasan (Format APA)</h2>
+                <p>Ringkasan perbandingan tugas merentas semua kumpulan jawatan</p>
+            </div>
+            <div id="apaOverviewTable"></div>
+        </section>
+
+        <!-- APA Per-Jawatan Tables -->
+        <section class="apa-section">
+            <div class="section-header">
+                <h2>Jadual Terperinci Per Jawatan (Format APA)</h2>
+                <p>Setiap tugasan sebenar di lapangan dipadankan dengan tugas dalam JD rasmi termasuk bilangan respons N(%)</p>
+            </div>
+            <div id="apaPerJawatan"></div>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
